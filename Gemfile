@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.6'
+ruby '3.4.4'
 
 gem 'activesupport'
 gem 'airrecord'
@@ -12,4 +12,6 @@ gem 'pry'
 gem 'rb-readline'
 gem 'sinatra' # for heroku deployment
 
-gem 'bigdecimal', '1.3.5'
+gem 'bigdecimal'
+gem 'nokogiri'
+gem 'google-cloud-storage', '~> 1.52'
