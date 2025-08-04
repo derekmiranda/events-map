@@ -1,4 +1,5 @@
-require 'aws-sdk-s3'
+require 'stringio'
+require 'google/cloud/storage'
 require 'dotenv'
 require 'json'
 
@@ -13,26 +14,16 @@ require 'json'
 # Load environment variables
 Dotenv.load
 
-# Initialize our AWS S3 client that lets us upload
-# the event map
-s3 = Aws::S3::Client.new(
-  access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-  region: ENV['AWS_REGION']
+# Initialize our Google Cloud client that lets us upload
+# the event data
+storage = Google::Cloud::Storage.new(
+  project_id: 'nyslegislation'
 )
+
+bucket = storage.bucket ENV['AWS_BUCKET']
 
 # Upload the event map
-s3.put_object(
-  bucket: ENV['AWS_BUCKET'],
-  acl: 'public-read',
-  key: 'map.html',
-  body: File.read('./event_map.html') # read the HTML from the file
-)
+bucket.create_file 'event_map.html', 'map.html'
 
 # Upload zip codes
-s3.put_object(
-  bucket: ENV['AWS_BUCKET'],
-  acl: 'public-read',
-  key: 'zip_codes.json',
-  body: File.read('./zip_codes.json')
-)
+bucket.create_file 'zip_codes.json', 'zip_codes.json'

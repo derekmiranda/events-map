@@ -1,5 +1,6 @@
 require 'json'
-require 'aws-sdk-s3'
+require 'stringio'
+require 'google/cloud/storage'
 require 'dotenv'
 require_relative 'hubs_airtable'
 require_relative 'events_airtable'
@@ -51,18 +52,11 @@ map_json = JSON.dump({
   map_data: entries
 })
 
-# Initialize our AWS S3 client that lets us upload
+# Initialize our Google Cloud client that lets us upload
 # the event data
-s3 = Aws::S3::Client.new(
-  access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-  region: ENV['AWS_REGION']
+storage = Google::Cloud::Storage.new(
+  project_id: 'nyslegislation'
 )
 
-# Upload the event data
-s3.put_object(
-  bucket: ENV['AWS_BUCKET'],
-  acl: 'public-read',
-  key: 'events.json',
-  body: map_json
-)
+bucket = storage.bucket ENV['AWS_BUCKET']
+bucket.create_file StringIO.new(map_json), 'event.json'
