@@ -54,9 +54,7 @@ map_json = JSON.dump({
 
 # Initialize our Google Cloud client that lets us upload
 # the event data
-storage = Google::Cloud::Storage.new(
-  project_id: 'nyslegislation'
-)
+storage = Google::Cloud::Storage.new
+bucket = storage.bucket ENV['GCS_BUCKET']
 
-bucket = storage.bucket ENV['AWS_BUCKET']
 bucket.create_file StringIO.new(map_json), 'event.json'

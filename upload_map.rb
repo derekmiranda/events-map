@@ -16,11 +16,8 @@ Dotenv.load
 
 # Initialize our Google Cloud client that lets us upload
 # the event data
-storage = Google::Cloud::Storage.new(
-  project_id: 'nyslegislation'
-)
-
-bucket = storage.bucket ENV['AWS_BUCKET']
+storage = Google::Cloud::Storage.new
+bucket = storage.bucket ENV['GCS_BUCKET']
 
 # Upload the event map
 bucket.create_file 'event_map.html', 'map.html'
