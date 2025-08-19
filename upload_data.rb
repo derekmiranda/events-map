@@ -57,4 +57,4 @@ map_json = JSON.dump({
 storage = Google::Cloud::Storage.new
 bucket = storage.bucket ENV['GCS_BUCKET']
 
-bucket.create_file StringIO.new(map_json), 'event.json'
+bucket.create_file StringIO.new(map_json), 'events.json'

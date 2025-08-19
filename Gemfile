@@ -3,7 +3,6 @@ ruby '3.4.4'
 
 gem 'activesupport'
 gem 'airrecord'
-gem 'aws-sdk-s3'
 gem 'dotenv'
 gem 'httparty'
 gem 'tzinfo'

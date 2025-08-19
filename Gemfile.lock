@@ -20,24 +20,6 @@ GEM
       faraday (>= 1.0, < 3.0)
       faraday-net_http_persistent
       net-http-persistent
-    aws-eventstream (1.4.0)
-    aws-partitions (1.1117.0)
-    aws-sdk-core (3.226.0)
-      aws-eventstream (~> 1, >= 1.3.0)
-      aws-partitions (~> 1, >= 1.992.0)
-      aws-sigv4 (~> 1.9)
-      base64
-      jmespath (~> 1, >= 1.6.1)
-      logger
-    aws-sdk-kms (1.105.0)
-      aws-sdk-core (~> 3, >= 3.225.0)
-      aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.189.1)
-      aws-sdk-core (~> 3, >= 3.225.0)
-      aws-sdk-kms (~> 1)
-      aws-sigv4 (~> 1.5)
-    aws-sigv4 (1.12.1)
-      aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
     benchmark (0.4.1)
     bigdecimal (3.2.2)
@@ -104,7 +86,6 @@ GEM
       mutex_m
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    jmespath (1.6.2)
     json (2.12.2)
     jwt (2.10.2)
       base64
@@ -172,7 +153,6 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   airrecord
-  aws-sdk-s3
   bigdecimal
   dotenv
   google-cloud-storage (~> 1.52)
